@@ -4,8 +4,15 @@ basic maven pom with dependencies for TDD: junit, mockito, hamcrest
 Additional the plugin settings for a jacoco coverage and sonar analysis are given.
 The Maven site will include the jacoco coverage report.
 
-# usage:
-##  clean build with jacoco reporting and trigger for a (local) SonarQube server
+## usage:
+### create a report
+
+mvn site
+
+the report index page is located at ./target/site/index.html
+
+
+###  clean build with jacoco reporting and trigger for a (local) SonarQube server
 
 mvn clean verify jacoco:report sonar:sonar 
 
