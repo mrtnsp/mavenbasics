@@ -9,7 +9,7 @@ The Maven site will include the jacoco coverage report.
 
     mvn site
 
-the report index page is located at './target/site/index.html'
+the report index page is located at `./target/site/index.html`
 
 
 ###  clean build with jacoco reporting and trigger for a (local) SonarQube server
