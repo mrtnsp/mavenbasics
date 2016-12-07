@@ -23,7 +23,7 @@
 
     <!-- plugins -->
     <maven-jacoco-plugin.version>0.7.7.201606060606</maven-jacoco-plugin.version>
-    <sonar-plugin.version>3.1.1</sonar-plugin.version>
+    <sonar-plugin.version>3.2</sonar-plugin.version>
 
     <jacoco.min.line.coverage>0.75</jacoco.min.line.coverage>
     <jacoco.min.branch.coverage>0.75</jacoco.min.branch.coverage>
@@ -64,6 +64,17 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>java-hamcrest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
 
   <build>
     <pluginManagement>
@@ -132,8 +143,37 @@
         </executions>
       </plugin>
     </plugins>
-
   </build>
 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${maven.jxr.version}</version>
+        <configuration>
+          <aggregate>true</aggregate>
+          <linkJavadoc>true</linkJavadoc>
+          <javadocDir>apidocs</javadocDir>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
 
+  <profiles>
+    <profile>
+      <id>sonar</id>      
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <!-- you better configure your SonarQube URL in the CI Server! -->
+        <sonar.host.url>http://YOUR.ADDRESS.GOES.HERE:9000</sonar.host.url>
+      </properties>
+    </profile>
+  </profiles>
 </project>
