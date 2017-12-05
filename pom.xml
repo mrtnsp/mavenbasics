@@ -1,37 +1,58 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.spiller</groupId>
-  <artifactId>maven-basics</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Maven Basics</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.spiller</groupId>
+    <artifactId>maven-basics</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Maven Basics</name>
 
-  <description>this project contains the basic configuraiton for a maven project used in a TDD context.</description>
+    <description>this project contains the basic configuration for a maven project used in a TDD context.</description>
 
-  <properties>
-    <jdk.version>1.8</jdk.version>
-    <maven.compiler.target>${jdk.version}</maven.compiler.target>
-    <maven.compiler.source>${jdk.version}</maven.compiler.source>
+    <properties>
+        <jdk.version>9</jdk.version>
+        <maven.compiler.target>${jdk.version}</maven.compiler.target>
+        <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- dependenciess -->
-    <hamcrest.version>2.0.0.0</hamcrest.version>
-    <junit.version>4.11</junit.version>
-  </properties>
+        <!-- dependency versions -->
+        <junit.jupiter.version>5.0.2</junit.jupiter.version>
+        <assertj.version>3.8.0</assertj.version>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>java-hamcrest</artifactId>
-      <version>${hamcrest.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>      
-    </dependency>
-  </dependencies>
+        <!--plugin versions-->
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
