@@ -7,77 +7,67 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>Maven Basics</name>
 
-    <description>this project contains the basic configuraiton for a maven project used in a TDD context using sonar and
+    <description>this project contains the basic configuration for a maven project used in a TDD context using sonar and
         jacoco.
     </description>
 
 
     <properties>
 
-        <jdk.version>1.8</jdk.version>
+        <jdk.version>9</jdk.version>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 
         <!-- dependenciess -->
-        <hamcrest.version>2.0.0.0</hamcrest.version>
-        <junit.version>4.12</junit.version>
-        <mockito.version>1.10.19</mockito.version>
+        <junit.jupiter.version>5.0.2</junit.jupiter.version>
+        <assertj.version>3.8.0</assertj.version>
+        <mockito.version>2.12.2</mockito.version>
 
         <!-- plugins -->
-        <maven-jacoco-plugin.version>0.7.7.201606060606</maven-jacoco-plugin.version>
+        <maven-jacoco-plugin.version>0.7.9</maven-jacoco-plugin.version>
         <sonar-plugin.version>3.2</sonar-plugin.version>
         <maven.jxr.version>2.5</maven.jxr.version>
         <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
 
-        <jacoco.min.line.coverage>0.75</jacoco.min.line.coverage>
-        <jacoco.min.branch.coverage>0.75</jacoco.min.branch.coverage>
+        <jacoco.min.line.coverage>0.80</jacoco.min.line.coverage>
+        <jacoco.min.branch.coverage>0.80</jacoco.min.branch.coverage>
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>java-hamcrest</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>java-hamcrest</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -130,31 +120,31 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
-                    <execution>
-                        <id>check</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <rule>
-                                    <element>BUNDLE</element>
-                                    <limits>
-                                        <limit>
-                                            <counter>LINE</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>${jacoco.min.line.coverage}</minimum>
-                                        </limit>
-                                        <limit>
-                                            <counter>BRANCH</counter>
-                                            <value>COVEREDRATIO</value>
-                                            <minimum>${jacoco.min.branch.coverage}</minimum>
-                                        </limit>
-                                    </limits>
-                                </rule>
-                            </rules>
-                        </configuration>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>check</id>-->
+                        <!--<goals>-->
+                            <!--<goal>check</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<rules>-->
+                                <!--<rule>-->
+                                    <!--<element>BUNDLE</element>-->
+                                    <!--<limits>-->
+                                        <!--<limit>-->
+                                            <!--<counter>LINE</counter>-->
+                                            <!--<value>COVEREDRATIO</value>-->
+                                            <!--<minimum>${jacoco.min.line.coverage}</minimum>-->
+                                        <!--</limit>-->
+                                        <!--<limit>-->
+                                            <!--<counter>BRANCH</counter>-->
+                                            <!--<value>COVEREDRATIO</value>-->
+                                            <!--<minimum>${jacoco.min.branch.coverage}</minimum>-->
+                                        <!--</limit>-->
+                                    <!--</limits>-->
+                                <!--</rule>-->
+                            <!--</rules>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
                 </executions>
             </plugin>
         </plugins>

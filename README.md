@@ -1,8 +1,10 @@
 # mavenbasics
 
-Basic maven pom with dependencies for TDD: junit, mockito, hamcrest
+Basic maven pom with dependencies for TDD: junit 5, mockito, assertj
 Additional the plugin settings for a jacoco coverage and sonar analysis are given.
 The Maven site will include the jacoco coverage report.
+
+The jacoco check for a minimum coverage was disabled -  it wont work with junit jupiter at the moment.
 
 ## usage:
 ### create a report
